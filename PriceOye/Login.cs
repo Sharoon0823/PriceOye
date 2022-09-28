@@ -16,7 +16,8 @@ namespace PriceOye
         By Login_Button = By.XPath("/html/body/div[1]/header/div/div[4]/a/span");
         By Phone_Number = By.XPath("//input[@id = 'phone-number']");
         By CLickOTP = By.XPath("//button [@id = 'content_to_otp']");
-        // #region constructor
+
+         //constructor
         public Login(IWebDriver driver)
         {
             commonDriver = driver;
