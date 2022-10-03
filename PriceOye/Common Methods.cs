@@ -8,6 +8,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using System.Threading;
+using OpenQA.Selenium.Support.UI;
 
 namespace PriceOye
 {
@@ -30,7 +31,7 @@ namespace PriceOye
         }
 
 
-        #region frequent_methods
+        // frequent_methods
 
 
         //Find Element
@@ -135,10 +136,99 @@ namespace PriceOye
                 elementState = "disabled";
             }
             return elementState;
-        }
-}
 
-        #endregion
-        
+        }
+
+
+        //ExecuteJavaScriptCode
+        public static string ExecuteJavaScriptCode(string javascriptCode)
+        {
+            string value = null;
+            try
+            {
+                IJavaScriptExecutor js = (IJavaScriptExecutor)commonDriver;
+                value = (string)js.ExecuteScript(javascriptCode);
+            }
+            catch (Exception)
+            {
+
+            }
+            return value;
+        }
+
+
+
+
+        //Wait for Element
+        private IWebElement WaitForELement(By by, int timeToReadyElement = 0)
+        {
+            IWebElement element = null;
+            try
+            {
+                if (timeToReadyElement != 0 && timeToReadyElement.ToString() != null)
+                {
+                    PlaybackWait(timeToReadyElement * 1000);
+                }
+                element = commonDriver.FindElement(by);
+            }
+            catch
+            {
+                WebDriverWait wait = new WebDriverWait(commonDriver, TimeSpan.FromSeconds(60));
+                wait.Until(driver => IsPageReady(driver) == true && IsElementVisible(by) == true && IsClickable(by) == true);
+                element = commonDriver.FindElement(by);
+            }
+            return element;
+        }
+
+        //Element Visible
+        private bool IsElementVisible(By by)
+        {
+            return(findElement(by).Displayed || findElement(by).Enabled) ? true : false;
+            
+        }
+
+
+        //IS PAge Ready
+        private bool IsPageReady(IWebDriver driver)
+        {
+           return ExecuteJavaScriptCode("return document.readyState").Equals("complete");
+        }
+
+        private void PlaybackWait(int v)
+        {
+            throw new NotImplementedException();
+        }
+
+        //Element Present
+        private bool IsElementPresent(By by)
+        {
+            try
+            {
+                commonDriver.FindElement(by);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
+
+
+        //Clickable
+        private bool IsClickable(By by)
+        {
+            try
+            {
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
+
+
+}
 
