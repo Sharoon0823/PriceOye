@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using System.Threading;
 
 namespace PriceOye
 {
@@ -15,16 +16,17 @@ namespace PriceOye
         public static IWebDriver commonDriver;
         Actions Action;
 
-        public static void driver(string driver)
+        public static IWebDriver driver(string driver)
         {
             if (driver == "Chrome")
             {
-                 commonDriver = new  ChromeDriver();
+                commonDriver = new ChromeDriver();
             }
             else if (driver == "firefox")
             {
                 commonDriver = new FirefoxDriver();
             }
+            return commonDriver;
         }
 
 
@@ -39,12 +41,15 @@ namespace PriceOye
 
         }
 
+
+
+
         //RemoveText
 
 
         //SendTextInput Field
-        
-        public void setText(By locate , string text)
+
+        public void setText(By locate, string text)
         {
             IWebElement findedElement = findElement(locate);
             findedElement.Clear();
@@ -58,7 +63,7 @@ namespace PriceOye
         public void CLick(By locator)
         {
             Action = new Actions(commonDriver);
-            Action.Click(findElement(locator)).Build().Perform();
+            Action.Click(findElement(locator)).Build().Perform();  
 
         }
 
@@ -68,13 +73,72 @@ namespace PriceOye
         {
             int a = element.Text.Length;
 
-            while(a> 0)
+            while (a > 0)
             {
                 element.SendKeys(Keys.Backspace);
             }
         }
 
-        #endregion
-        //l
-    }
+
+        public static void ForClose()
+        {
+            commonDriver.Close();
+        }
+
+        public static void ForSleep()
+        {
+            Thread.Sleep(5000);
+
+        }
+
+        //For URL
+
+        public void FOrUrl(string url)
+        {
+            commonDriver.Url = url;
+        }
+
+
+        
+        public string getElementText(By Locator)
+        {
+            string text;
+            try
+            {
+                text = findElement(Locator).Text;
+            }
+            catch
+            {
+                try
+                {
+                    text = findElement(Locator).GetAttribute("Value");
+                }
+                catch
+                {
+                    text = findElement(Locator).GetAttribute("innerHTML");
+                }
+            }
+            return text;
+        }
+
+
+        //GetElement STate
+        public string getElementState(By by)
+        {
+            string elementState = commonDriver.FindElement(by).GetAttribute("Disabled");
+            if(elementState == null)
+            {
+                elementState = "enabled";
+            }
+            else if(elementState == "true")
+            {
+                elementState = "disabled";
+            }
+            return elementState;
+        }
 }
+
+        #endregion
+        
+    }
+

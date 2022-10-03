@@ -45,8 +45,10 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.2.2.7\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="WebDriver, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.4.4.0\lib\net47\WebDriver.dll</HintPath>
@@ -57,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common Methods.cs" />
+    <Compile Include="ForRegistration.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Automation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,6 +1,10 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+
+//Parallelized
+[assembly: Parallelize(Workers = 1 , Scope = Microsoft.VisualStudio.TestTools.UnitTesting.ExecutionScope.MethodLevel)]
 
 [assembly: AssemblyTitle("PriceOye")]
 [assembly: AssemblyDescription("")]
