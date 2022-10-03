@@ -167,7 +167,8 @@ namespace PriceOye
             {
                 if (timeToReadyElement != 0 && timeToReadyElement.ToString() != null)
                 {
-                    PlaybackWait(timeToReadyElement * 1000);
+                    //PlaybackWait(timeToReadyElement * 1000);
+                    timeToReadyElement = timeToReadyElement * 1000;
                 }
                 element = commonDriver.FindElement(by);
             }
