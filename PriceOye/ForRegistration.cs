@@ -9,6 +9,11 @@ namespace PriceOye
 {
      class ForRegistration : Common_Method
     {
+
+        private static readonly log4net.ILog log =
+   log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+
         By Register_ButtonC = By.XPath("//*[@id=\'p-register \']/a/span");
         By Pnum = By.XPath("//input[@id='phone-number']");
         By CToOTP = By.XPath("//button[@class = 'btn btn-primary btn-otp' and @id = 'content_to_otp'] ");
@@ -30,7 +35,9 @@ namespace PriceOye
         //Method FOr Registration
         public void ForCLickRegButton()
         {
+
             CLick(Register_ButtonC);
+            log.Info("Click is Working");
         }
 
         //Method For PhoneNumber ENter

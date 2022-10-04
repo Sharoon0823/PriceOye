@@ -12,8 +12,10 @@ using static System.Net.WebRequestMethods;
 namespace PriceOye
 {
     [TestClass]
+
     public class Automation
     {
+
         public TestContext instance;
         public TestContext TestContext
         {
@@ -27,6 +29,7 @@ namespace PriceOye
         
         public void LoginButton_Valid()
         {
+
             string mNum = TestContext.DataRow["Otp"].ToString();
 
             IWebDriver aDriver =  Common_Method.driver("Chrome");
