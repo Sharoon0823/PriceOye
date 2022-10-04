@@ -117,7 +117,7 @@ namespace PriceOye
 
             ForRegistration ll = new ForRegistration(aDriver);
             ll.ForCLickRegButton();
-            ll.EnterNum("03468592298");
+            ll.EnterNum("03034340191");
             ll.ClickCtoOTP();
             Thread.Sleep(25000);
             ll.VerifyCode();
@@ -127,6 +127,7 @@ namespace PriceOye
             ll.ClickEMail();
             ll.EnterEMail("Sharoonkhaliq84@gmail.com");
             ll.WriteRef("N/A");
+            Thread.Sleep(8000);
             ll.Continue();
         }
 

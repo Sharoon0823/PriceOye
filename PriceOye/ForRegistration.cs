@@ -44,12 +44,14 @@ namespace PriceOye
 
         public void EnterNum(string number)
         {
+            log.Info("Number Written ");
             setText(Pnum, number);
         }
 
         //For Click On Continue to OTP
         public void ClickCtoOTP()
         {
+            log.Info("CLick To OTP ");
             CLick(CToOTP);
 
         }
@@ -60,6 +62,7 @@ namespace PriceOye
 
         public void VerifyCode()
         {
+            log.Info("Code  Verified");
             CLick(VOTP);
         }
 
@@ -67,13 +70,14 @@ namespace PriceOye
 
         public void ClickFirstName()
         {
+            log.Info("Click on First_Name ENtered");
             CLick(EnterFname);
         }
 
         //ENter FirstName
         public void Fname(string Fnamee)
         {
-            
+            log.Info("Entered Fname");
             setText(EnterFname, Fnamee);
         }
 
