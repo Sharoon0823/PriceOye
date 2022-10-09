@@ -9,6 +9,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using System.Threading;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Edge;
 
 namespace PriceOye
 {
@@ -17,7 +18,7 @@ namespace PriceOye
         public static IWebDriver commonDriver;
         Actions Action;
 
-        public static IWebDriver driver(string driver)
+        public static IWebDriver Driver(string driver)
         {
             if (driver == "Chrome")
             {
@@ -26,6 +27,10 @@ namespace PriceOye
             else if (driver == "firefox")
             {
                 commonDriver = new FirefoxDriver();
+            }
+            else if ( driver == "Edge")
+            {
+                commonDriver = new EdgeDriver();
             }
             return commonDriver;
         }
@@ -232,6 +237,10 @@ namespace PriceOye
             }
         }
 
+        internal static IWebDriver Driver(ChromeOptions chromeOptions)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

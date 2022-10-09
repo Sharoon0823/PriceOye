@@ -19,20 +19,30 @@ namespace PriceOye
         public TestContext instance;
         public TestContext TestContext
         {
-            set{ instance = value; }
+            set { instance = value; }
             get { return instance; }
         }
 
         [TestMethod]
+        [TestCategory("ForLogin_Bat")]
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML" , "Login_DataFile.XML" , "LoginWithValidUserValidCredentials" , DataAccessMethod.Sequential)]
-        
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "Login_DataFilee.XML", "Login", DataAccessMethod.Sequential)]
+
         public void LoginButton_Valid()
         {
 
-            string mNum = TestContext.DataRow["Otp"].ToString();
+            string mNum = TestContext.DataRow["mNum"].ToString();
 
-            IWebDriver aDriver =  Common_Method.driver("Chrome");
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("disable-extensions");
+            chromeOptions.AddArguments("disable-popup-blocking");
+            chromeOptions.AddArguments("--silent");
+
+            //IWebDriver aDriver = Common_Method.driver("firefox");
+            IWebDriver aDriver = Common_Method.Driver("Chrome");
+            aDriver = new ChromeDriver(chromeOptions);
+
+
             aDriver.Manage().Window.Maximize();
             aDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
 
@@ -42,10 +52,12 @@ namespace PriceOye
             OL.clickLoginButton();
             OL.EnterPhoneNumber(mNum);
             OL.ForOTPClick();
-            Thread.Sleep(19000);
+            Thread.Sleep(21000);
             OL.VerifyOtp();
-
-         //aDriver.Close();
+            Thread.Sleep(4000);
+            aDriver.Navigate().Refresh();
+            ((ITakesScreenshot)aDriver).GetScreenshot().SaveAsFile("Login.png");
+            aDriver.Close();
         }
 
 
@@ -57,7 +69,7 @@ namespace PriceOye
         {
             string mNum = TestContext.DataRow["Otp"].ToString();
 
-            IWebDriver aDriver = Common_Method.driver("firefox");
+            IWebDriver aDriver = Common_Method.Driver("firefox");
             aDriver.Manage().Window.Maximize();
             aDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
 
@@ -70,46 +82,31 @@ namespace PriceOye
             Thread.Sleep(2000);
             OL.ForOTPClick();
             Thread.Sleep(5000);
-           // OL.GetElementShow();
-            //aDriver.Close();
+            OL.GetElementShow();
+            aDriver.Close();
         }
 
-        //To show element text
-        [TestMethod]
-        public void ForElementText()
-        {
-            IWebDriver aDriver = Common_Method.driver("firefox");
-            aDriver.Manage().Window.Maximize();
-            aDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
+        ////To show element text
+        //[TestMethod]
+        //public void ForElementText()
+        //{
+        //    IWebDriver aDriver = Common_Method.Driver("firefox");
+        //    aDriver.Manage().Window.Maximize();
+        //    aDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
 
-            aDriver.Url = "https://priceoye.pk/";
+        //    aDriver.Url = "https://priceoye.pk/";
 
-            Login ll = new Login(aDriver);
+        //    Login ll = new Login(aDriver);
 
-            ll.GetElementShow();
+        //    ll.GetElementShow();
 
-        }
+    //}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //For Regitration Button CLick
+       // For Regitration Button CLick
         [TestMethod]
         public void Registration()
         {
-            IWebDriver aDriver = Common_Method.driver("Chrome");
+            IWebDriver aDriver = Common_Method.Driver("Chrome");
             aDriver.Manage().Window.Maximize();
             aDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
 
@@ -117,7 +114,7 @@ namespace PriceOye
 
             ForRegistration ll = new ForRegistration(aDriver);
             ll.ForCLickRegButton();
-            ll.EnterNum("03034340191");
+            ll.EnterNum("03468592298");
             ll.ClickCtoOTP();
             Thread.Sleep(25000);
             ll.VerifyCode();

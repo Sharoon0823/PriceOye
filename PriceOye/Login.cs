@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools;
 using System;
 using System.Security.Policy;
 using System.Windows;
@@ -12,6 +13,8 @@ namespace PriceOye
     {
 
 
+        private static readonly log4net.ILog log =
+   log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         // #region objects
 
@@ -23,6 +26,7 @@ namespace PriceOye
         //constructor
         public Login(IWebDriver driver)
         {
+            log.Info("Constructor Called");
             commonDriver = driver;
 
         }
@@ -31,6 +35,7 @@ namespace PriceOye
         #region login
         public void clickLoginButton()
         {
+            log.Info("CLick On Login Button");
             CLick(Login_Button);
             
 
@@ -39,6 +44,7 @@ namespace PriceOye
         //Forverify  OTP Code
         public void VerifyOtp()
         {
+            log.Info("Click on Verify Code");
             CLick(VerifyCode);
 
 
@@ -46,11 +52,13 @@ namespace PriceOye
 
         public void EnterPhoneNumber(string num)
         {
+            log.Info("Enter Phone Number");
             setText(Phone_Number, num);
         }
 
         public void ForOTPClick()
         {
+
             CLick(CLickOTP);
         }
 
@@ -58,6 +66,7 @@ namespace PriceOye
 
         public void GetElementShow()
         {
+
             string text = getElementText(Login_Button);
             MessageBox.Show(text);
         }
