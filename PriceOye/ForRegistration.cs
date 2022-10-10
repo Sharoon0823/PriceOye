@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PriceOye
 {
-     class ForRegistration : Common_Method
+     class ForRegistration : Common_Methods
     {
 
         private static readonly log4net.ILog log =

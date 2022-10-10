@@ -237,10 +237,29 @@ namespace PriceOye
             }
         }
 
-        internal static IWebDriver Driver(ChromeOptions chromeOptions)
+        
+        #region Scroll Down
+        public void scrollToElement(By locator)
         {
-            throw new NotImplementedException();
+
+
+            IWebElement state = WaitForELement(locator);
+            IJavaScriptExecutor commonExecuter = (IJavaScriptExecutor)commonDriver;
+            commonExecuter.ExecuteScript("arguments[0].scrollIntoView(true); ", state);
+
+
         }
+        #endregion
+
+
+
+        #region For DropDown ELement
+        public void dropDown(By locator, string a)
+        {
+            SelectElement drop = new SelectElement(commonDriver.FindElement(locator));
+            drop.SelectByValue(a);
+        }
+        #endregion
     }
 
 

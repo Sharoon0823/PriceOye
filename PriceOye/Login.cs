@@ -9,7 +9,7 @@ using static System.Net.Mime.MediaTypeNames;
 namespace PriceOye
 {
 
-    public class Login : Common_Method
+    public class Login : Common_Methods
     {
 
 

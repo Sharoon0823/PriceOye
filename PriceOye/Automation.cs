@@ -39,7 +39,7 @@ namespace PriceOye
             chromeOptions.AddArguments("--silent");
 
             //IWebDriver aDriver = Common_Method.driver("firefox");
-            IWebDriver aDriver = Common_Method.Driver("Chrome");
+            IWebDriver aDriver = Common_Methods.Driver("Chrome");
             aDriver = new ChromeDriver(chromeOptions);
 
 
@@ -69,7 +69,7 @@ namespace PriceOye
         {
             string mNum = TestContext.DataRow["Otp"].ToString();
 
-            IWebDriver aDriver = Common_Method.Driver("firefox");
+            IWebDriver aDriver = Common_Methods.Driver("firefox");
             aDriver.Manage().Window.Maximize();
             aDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
 
@@ -90,7 +90,7 @@ namespace PriceOye
         //[TestMethod]
         //public void ForElementText()
         //{
-        //    IWebDriver aDriver = Common_Method.Driver("firefox");
+        //    IWebDriver aDriver = Common_Methods.Driver("firefox");
         //    aDriver.Manage().Window.Maximize();
         //    aDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
 
@@ -132,8 +132,18 @@ namespace PriceOye
         [TestMethod]
         public void SearchItemAvailable()
         {
-            IWebDriver webDriver = Common_Methods.Driver("Chrome"); 
-            //ForSearch fs = new ForSearch(a);
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("start-maximized");
+            options.AddArgument("-no-sandbox");
+
+            IWebDriver webDriver = Common_Methods.Driver("Chrome");
+
+            //Pass the ChromeOptions object into the ChromeDriver constructor
+            webDriver = new ChromeDriver(options);
+
+            ForSearch fs = new ForSearch(webDriver);
+           
+            fs.SearchFunctionality("Iphone 13" , "03057633796");
         }
 
     }
