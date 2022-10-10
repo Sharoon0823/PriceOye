@@ -21,7 +21,10 @@ namespace PriceOye
         By EnterPhoneNum = By.XPath("//*[@id=\'phone-number\']");
         By ReqOTP = By.XPath("//button[@onclick='onSignInSubmit()']");
         By ClickVerifyCode = By.XPath("//button[@onclick='onVerifySubmit()']");
+        By click_province = By.XPath("//*[@id=\'province\']");
         By Province = By.Name("province");
+        By City = By.Name("city");
+        By Area = By.Name("area");
 
         #region Step:01 Constructor
         public ForSearch(IWebDriver driver)
@@ -34,10 +37,11 @@ namespace PriceOye
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         #endregion
 
+
         #region Step:03
-        public void SearchFunctionality(string ev , string evv)
+        public void SearchFunctionality(string uerl,string ev , string evv)
         {
-            FOrUrl("https://priceoye.pk/");
+            FOrUrl(uerl);
             log.Info("Open URL");
             CLick(CLick_Search);
             log.Info("Clicked on Search button");
@@ -51,10 +55,15 @@ namespace PriceOye
             CLick(EnterPhoneNum);
             setText(EnterPhoneNum ,  evv);
             CLick(ReqOTP);
-            Thread.Sleep(19000);
+            Thread.Sleep(29000);
             CLick(ClickVerifyCode);
-            //CLick(Province);
+
+            scrollToElement(Province);
             dropDown(Province, "Punjab");
+             
+            dropDown(City, "Barakahu");
+            dropDown(Area, "Barakahu");
+
 
 
 

@@ -132,18 +132,19 @@ namespace PriceOye
         [TestMethod]
         public void SearchItemAvailable()
         {
+            
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("start-maximized");
-            options.AddArgument("-no-sandbox");
+          //  options.AddArgument("-no-sandbox");
 
-            IWebDriver webDriver = Common_Methods.Driver("Chrome");
+          //  IWebDriver webDriver = Common_Methods.Driver("Chrome");
 
             //Pass the ChromeOptions object into the ChromeDriver constructor
-            webDriver = new ChromeDriver(options);
+            IWebDriver  webDriver = new ChromeDriver(options);
 
             ForSearch fs = new ForSearch(webDriver);
            
-            fs.SearchFunctionality("Iphone 13" , "03057633796");
+            fs.SearchFunctionality("https://priceoye.pk/", "Iphone 13" , "03057633796");
         }
 
     }
