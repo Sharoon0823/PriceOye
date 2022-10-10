@@ -106,7 +106,7 @@ namespace PriceOye
         [TestMethod]
         public void Registration()
         {
-            IWebDriver aDriver = Common_Method.Driver("Chrome");
+            IWebDriver aDriver = Common_Methods.Driver("Chrome");
             aDriver.Manage().Window.Maximize();
             aDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
 
@@ -126,6 +126,14 @@ namespace PriceOye
             ll.WriteRef("N/A");
             Thread.Sleep(8000);
             ll.Continue();
+        }
+
+
+        [TestMethod]
+        public void SearchItemAvailable()
+        {
+            IWebDriver webDriver = Common_Methods.Driver("Chrome"); 
+            //ForSearch fs = new ForSearch(a);
         }
 
     }

@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Common Methods.cs" />
     <Compile Include="ForRegistration.cs" />
+    <Compile Include="ForSearch.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Automation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

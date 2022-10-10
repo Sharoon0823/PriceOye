@@ -13,7 +13,7 @@ using OpenQA.Selenium.Edge;
 
 namespace PriceOye
 {
-    public class Common_Method
+    public class Common_Methods
     {
         public static IWebDriver commonDriver;
         Actions Action;
