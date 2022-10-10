@@ -21,7 +21,7 @@ namespace PriceOye
         By EnterPhoneNum = By.XPath("//*[@id=\'phone-number\']");
         By ReqOTP = By.XPath("//button[@onclick='onSignInSubmit()']");
         By ClickVerifyCode = By.XPath("//button[@onclick='onVerifySubmit()']");
-        By Province = By.Name("//*[@id='province']");
+        By Province = By.Name("province");
 
         #region Step:01 Constructor
         public ForSearch(IWebDriver driver)
@@ -53,6 +53,7 @@ namespace PriceOye
             CLick(ReqOTP);
             Thread.Sleep(19000);
             CLick(ClickVerifyCode);
+            //CLick(Province);
             dropDown(Province, "Punjab");
 
 
