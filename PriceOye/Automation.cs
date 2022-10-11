@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,9 +101,9 @@ namespace PriceOye
 
         //    ll.GetElementShow();
 
-    //}
+        //}
 
-       // For Regitration Button CLick
+        // For Regitration Button CLick
         [TestMethod]
         public void Registration()
         {
@@ -130,22 +131,57 @@ namespace PriceOye
 
 
         [TestMethod]
-        public void SearchItemAvailable()
+        public void SearchItemAvailable01()
         {
-            
+
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("start-maximized");
-          //  options.AddArgument("-no-sandbox");
+            options.AddArgument("-no-sandbox");
 
-          //  IWebDriver webDriver = Common_Methods.Driver("Chrome");
+            //  IWebDriver webDriver = Common_Methods.Driver("Chrome");
 
             //Pass the ChromeOptions object into the ChromeDriver constructor
-            IWebDriver  webDriver = new ChromeDriver(options);
+            IWebDriver webDriver = new ChromeDriver(options);
 
             ForSearch fs = new ForSearch(webDriver);
-           
-            fs.SearchFunctionality("https://priceoye.pk/", "Iphone 13" , "03057633796");
+
+            fs.SearchFunctionality01("https://priceoye.pk/", "Iphone 13", "03057633796");
         }
 
+
+        [TestMethod]
+        public void SearchAndCompare02()
+        {
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("start-maximized");
+            options.AddArgument("-no-sandbox");
+
+            //  IWebDriver webDriver = Common_Methods.Driver("Chrome");
+
+            //Pass the ChromeOptions object into the ChromeDriver constructor
+            IWebDriver webDriver = new ChromeDriver(options);
+
+            ForSearch fss = new ForSearch(webDriver);
+            fss.SearchAndCOmpare("https://priceoye.pk/", "Iphone 13", "Iphone 12");
+
+
+        }
+
+        [TestMethod]
+        public void InValidItemSearch03()
+        {
+            FirefoxOptions options = new FirefoxOptions();
+          //  options.AddArgument("start-maximized");
+           //options.AddArgument("-no-sandbox");
+
+            //  IWebDriver webDriver = Common_Methods.Driver("Chrome");
+
+            //Pass the ChromeOptions object into the ChromeDriver constructor
+            IWebDriver webDriver = new FirefoxDriver(options);
+            ForSearch fs = new ForSearch(webDriver);
+
+            fs.InvalidSearchOfItem("https://priceoye.pk/", "Shirt");
+
+        }
     }
 }

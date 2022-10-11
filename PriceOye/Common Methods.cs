@@ -260,7 +260,26 @@ namespace PriceOye
             drop.SelectByValue(a);
         }
         #endregion
+
+
+        #region FOr Zoom OUt
+
+        public void FOrZoomOUt()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)commonDriver;
+            js.ExecuteScript("document.body.style.zoom='30%'");
+        }
+        #endregion
+
+        #region For Screen SHot
+        public void ScreenSHot(string File)
+        {
+            ((ITakesScreenshot)commonDriver).GetScreenshot().SaveAsFile(File);
+        }
+        #endregion
     }
+
+
 
 
 }
