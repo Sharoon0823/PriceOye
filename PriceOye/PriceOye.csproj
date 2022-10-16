@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common Methods.cs" />
+    <Compile Include="Contact.cs" />
     <Compile Include="ForRegistration.cs" />
     <Compile Include="ForSearch.cs" />
     <Compile Include="Login.cs" />

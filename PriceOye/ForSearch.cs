@@ -30,6 +30,7 @@ namespace PriceOye
         By ClickVerifyCode = By.XPath("//button[@onclick='onVerifySubmit()']");
         By click_province = By.XPath("//*[@id=\'province\']");
         By Province = By.Name("province");
+        By city_click = By.XPath("//*[@id=\'city\']");
         By City = By.Name("city");
         By Area = By.Name("area");
         By Compare = By.XPath("//li[@id='compare-desktop-btn']");
@@ -37,7 +38,8 @@ namespace PriceOye
         By compare01 = By.XPath("//input[@id='compare-search-term0']");
         By compare001 = By.XPath("//*[@id=\'compare_autosuggest0-list\']/div/a[1]/span");
         By page_Ss = By.XPath("//div[@id='wrapper']");
-
+        By Address = By.XPath("//input[@name='address']");
+        By forTab = By.XPath("//*[@id=\'order-info\']/div/div/div[2]/span");
         #region Step:01 Constructor
         public ForSearch(IWebDriver driver)
         {
@@ -73,8 +75,18 @@ namespace PriceOye
             CLick(ClickVerifyCode);
             scrollToElement(Province);
             dropDown(Province, "Punjab");
-            ((IJavaScriptExecutor)commonDriver).ExecuteScript("return document.getElementById('City').selectedIndex =  + '1' ");
-          // dropDown(City, "Barakahu");
+                   FOrZoomOUt();
+            commonDriver.FindElement(By.XPath("//*[@id=\'order-info\']/div/div/div[2]/span")).SendKeys(Keys.Tab);
+
+            //WebElement m = (WebElement)commonDriver.FindElement(By.XPath("//*[@id='city']"));
+            //IJavaScriptExecutor jse = (IJavaScriptExecutor)commonDriver;
+            //jse.ExecuteScript("arguments[0].click();", m);
+            
+            //scrollToElement(Address);
+            //CLick(Address);
+            //setText(Address, "LAhore");
+           
+            dropDown(City, "Barakahu");
             //dropDown(Area, "Barakahu");
         }
         #endregion

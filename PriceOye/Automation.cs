@@ -171,8 +171,8 @@ namespace PriceOye
         public void InValidItemSearch03()
         {
             FirefoxOptions options = new FirefoxOptions();
-          //  options.AddArgument("start-maximized");
-           //options.AddArgument("-no-sandbox");
+            //  options.AddArgument("start-maximized");
+            //options.AddArgument("-no-sandbox");
 
             //  IWebDriver webDriver = Common_Methods.Driver("Chrome");
 
@@ -183,5 +183,39 @@ namespace PriceOye
             fs.InvalidSearchOfItem("https://priceoye.pk/", "Shirt");
 
         }
+
+
+
+
+        [TestMethod]
+        public void ContactFOrTrackOrder()
+        {
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("start-maximized");
+            options.AddArgument("-no-sandbox");
+
+            //  IWebDriver webDriver = Common_Methods.Driver("Chrome");
+
+            //Pass the ChromeOptions object into the ChromeDriver constructor
+            IWebDriver webDriver = new ChromeDriver(options);
+            Contact c = new Contact(webDriver);
+
+            c.ForContact("https://priceoye.pk/", "12345");
+        }
+        [TestMethod]
+        public void FOrOpenParcelDelivery()
+        {
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("start-maximized");
+            options.AddArgument("-no-sandbox");
+
+            //  IWebDriver webDriver = Common_Methods.Driver("Chrome");
+
+            //Pass the ChromeOptions object into the ChromeDriver constructor
+            IWebDriver webDriver = new ChromeDriver(options);
+            Contact c = new Contact(webDriver);
+
+            c.ParcelOpenDelivery("https://priceoye.pk/");
+;        }
     }
 }

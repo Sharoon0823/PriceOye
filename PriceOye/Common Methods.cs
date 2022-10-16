@@ -18,6 +18,7 @@ namespace PriceOye
         public static IWebDriver commonDriver;
         Actions Action;
 
+        #region For Driver
         public static IWebDriver Driver(string driver)
         {
             if (driver == "Chrome")
@@ -34,30 +35,19 @@ namespace PriceOye
             }
             return commonDriver;
         }
-        //
 
-        //
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        #endregion
 
-
-        // frequent_methods
-
-
-        //Find Element
+        #region Find Element
 
         public IWebElement findElement(By Locate)
         {
-            return commonDriver.FindElement(Locate);
+            return (IWebElement)commonDriver.FindElement(Locate);
 
         }
+        #endregion
 
-
-
-
-        //RemoveText
-
-
-        //SendTextInput Field
+        #region SendTextInput Field
 
         public void setText(By locate, string text)
         {
@@ -67,18 +57,19 @@ namespace PriceOye
             findedElement.SendKeys(text + Keys.Tab);
 
         }
+        #endregion
 
-        //Click on the Element
-
+        #region Click on the Element
         public void CLick(By locator)
         {
             Action = new Actions(commonDriver);
             Action.Click(findElement(locator)).Build().Perform();  
 
         }
+        #endregion
 
 
-        //Reomove Text
+        #region Reomove Text
         public void removeText(IWebElement element)
         {
             int a = element.Text.Length;
@@ -88,28 +79,32 @@ namespace PriceOye
                 element.SendKeys(Keys.Backspace);
             }
         }
+        #endregion
 
-
+        #region DriverClose
         public static void ForClose()
         {
             commonDriver.Close();
         }
+        #endregion
 
-        public static void ForSleep()
+        #region Sleep
+        public static void ForSleep(int time)
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(time);
 
         }
+        #endregion
 
-        //For URL
+        #region For URL
 
         public void FOrUrl(string url)
         {
             commonDriver.Url = url;
         }
+        #endregion
 
-
-        
+        #region GetElementText
         public string getElementText(By Locator)
         {
             string text;
@@ -130,9 +125,9 @@ namespace PriceOye
             }
             return text;
         }
+        #endregion
 
-
-        //GetElement STate
+        #region GetElement STate
         public string getElementState(By by)
         {
             string elementState = commonDriver.FindElement(by).GetAttribute("Disabled");
@@ -147,6 +142,7 @@ namespace PriceOye
             return elementState;
 
         }
+        #endregion
 
 
         //ExecuteJavaScriptCode
@@ -168,8 +164,8 @@ namespace PriceOye
 
 
 
-        //Wait for Element
-        private IWebElement WaitForELement(By by, int timeToReadyElement = 0)
+        #region Wait for Element
+        public IWebElement WaitForELement(By by, int timeToReadyElement = 0)
         {
             IWebElement element = null;
             try
@@ -189,28 +185,28 @@ namespace PriceOye
             }
             return element;
         }
+        #endregion
 
-        //Element Visible
-        private bool IsElementVisible(By by)
+        #region Element Visible
+        public bool IsElementVisible(By by)
         {
             return(findElement(by).Displayed || findElement(by).Enabled) ? true : false;
             
         }
+        #endregion
 
 
-        //IS PAge Ready
-        private bool IsPageReady(IWebDriver driver)
+        #region IS PAge Ready
+        public bool IsPageReady(IWebDriver driver)
         {
            return ExecuteJavaScriptCode("return document.readyState").Equals("complete");
         }
+        #endregion
 
-        private void PlaybackWait(int v)
-        {
-            throw new NotImplementedException();
-        }
+       
 
-        //Element Present
-        private bool IsElementPresent(By by)
+       #region Element Present
+        public bool IsElementPresent(By by)
         {
             try
             {
@@ -222,10 +218,11 @@ namespace PriceOye
                 return false;
             }
         }
+        #endregion
 
 
-        //Clickable
-        private bool IsClickable(By by)
+        #region Clickable
+        public bool IsClickable(By by)
         {
             try
             {
@@ -236,8 +233,9 @@ namespace PriceOye
                 return false;
             }
         }
+        #endregion
 
-        
+
         #region Scroll Down
         public void scrollToElement(By locator)
         {
@@ -267,7 +265,7 @@ namespace PriceOye
         public void FOrZoomOUt()
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)commonDriver;
-            js.ExecuteScript("document.body.style.zoom='30%'");
+            js.ExecuteScript("document.body.style.zoom='50%'");
         }
         #endregion
 
@@ -280,7 +278,7 @@ namespace PriceOye
     }
 
 
-
+    
 
 }
 
